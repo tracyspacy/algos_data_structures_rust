@@ -1,0 +1,61 @@
+[package]
+name = "algos_data_structures"
+version = "0.1.0"
+edition = "2021"
+
+
+[[example]]
+name = "merge_sorted_array"
+path = "src/arrays/two_pointers/merge_sorted_array.rs"
+[[example]]
+name = "valid_palindrome"
+path = "src/arrays/two_pointers/valid_palindrome.rs"
+[[example]]
+name = "remove_duplicates_from_sorted_array"
+path = "src/arrays/remove_duplicates_from_sorted_array.rs"
+
+[[example]]
+name = "min_sub_array_len"
+path = "src/arrays/sliding_window/min_sub_array_len.rs"
+
+[[example]]
+name = "valid_parentheses"
+path = "src/stack/valid_parentheses.rs"
+
+[[example]]
+name = "linked_list"
+path = "src/linked_list/linked_list.rs"
+
+[[example]]
+name = "merge_sorted_linked_lists"
+path = "src/linked_list/merge_sorted_linked_lists.rs"
+
+[[example]]
+name = "reverse_linked_list"
+path = "src/linked_list/reverse_linked_list.rs"
+
+
+[[example]]
+name = "binary_search_recursive"
+path = "src/arrays/binary_search/binary_search_recursive.rs"
+
+[[example]]
+name = "search_insert_position"
+path = "src/arrays/binary_search/search_insert_position.rs"
+
+
+[[example]]
+name = "binary_tree"
+path = "src/trees/binary_trees/binary_tree.rs"
+
+[[example]]
+name = "max_depth"
+path = "src/trees/binary_trees/max_depth.rs"
+
+[[example]]
+name = "same_tree"
+path = "src/trees/binary_trees/same_tree.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
