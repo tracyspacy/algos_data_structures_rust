@@ -1,4 +1,3 @@
-use std::borrow::Borrow;
 use std::cell::RefCell;
 use std::fmt::Debug;
 use std::rc::Rc;
@@ -23,14 +22,10 @@ pub fn preorder_traversal<T: Debug>(root: &Option<Rc<RefCell<TreeNode<T>>>>) {
     match root {
         None => {}
         Some(node) => {
-            let borrowed_node: &RefCell<TreeNode<T>> = node.borrow();
-            println!("{:?}", borrowed_node.borrow().val);
-            if let Some(left) = borrowed_node.borrow().left.as_ref() {
-                preorder_traversal(&Some(left.clone())); //cloning reference counted pointer (Rc) to the RefCell containing the TreeNode,not entire tree
-            }
-            if let Some(right) = borrowed_node.borrow().right.as_ref() {
-                preorder_traversal(&Some(right.clone()));
-            }
+            let borrowed_node = node.borrow();
+            println!("{:?}", borrowed_node.val);
+            preorder_traversal(&borrowed_node.left.clone());
+            preorder_traversal(&borrowed_node.right.clone());
         }
     }
 }
@@ -39,28 +34,20 @@ pub fn inorder_traversal<T: Debug>(root: &Option<Rc<RefCell<TreeNode<T>>>>) {
     match root {
         None => {}
         Some(node) => {
-            let borrowed_node: &RefCell<TreeNode<T>> = node.borrow();
-            if let Some(left) = borrowed_node.borrow().left.as_ref() {
-                inorder_traversal(&Some(left.clone()));
-            }
-            println!("{:?}", borrowed_node.borrow().val);
-            if let Some(right) = borrowed_node.borrow().right.as_ref() {
-                inorder_traversal(&Some(right.clone()));
-            }
+            let borrowed_node = node.borrow();
+            inorder_traversal(&borrowed_node.left.clone());
+            println!("{:?}", borrowed_node.val);
+            inorder_traversal(&borrowed_node.right.clone());
         }
     }
 }
 
 pub fn postorder_traversal<T: Debug>(root: &Option<Rc<RefCell<TreeNode<T>>>>) {
     if let Some(node) = root {
-        let borrowed_node: &RefCell<TreeNode<T>> = node.borrow();
-        if let Some(left) = borrowed_node.borrow().left.as_ref() {
-            postorder_traversal(&Some(left.clone()));
-        }
-        if let Some(right) = borrowed_node.borrow().right.as_ref() {
-            postorder_traversal(&Some(right.clone()));
-        }
-        println!("{:?}", borrowed_node.borrow().val);
+        let borrowed_node = node.borrow();
+        postorder_traversal(&borrowed_node.left.clone());
+        postorder_traversal(&borrowed_node.right.clone());
+        println!("{:?}", borrowed_node.val);
     }
 }
 
@@ -68,15 +55,9 @@ pub fn calculate_max_depth<T: Debug>(root: &Option<Rc<RefCell<TreeNode<T>>>>) ->
     match root {
         None => return 0,
         Some(node) => {
-            let borrowed_node: &RefCell<TreeNode<T>> = node.borrow();
-            let mut left_depth = 0;
-            let mut right_depth = 0;
-            if let Some(left) = borrowed_node.borrow().left.as_ref() {
-                left_depth = calculate_max_depth(&Some(left.clone()));
-            };
-            if let Some(right) = borrowed_node.borrow().right.as_ref() {
-                right_depth = calculate_max_depth(&Some(right.clone()));
-            };
+            let borrowed_node = node.borrow();
+            let left_depth = calculate_max_depth(&borrowed_node.left.clone());
+            let right_depth = calculate_max_depth(&borrowed_node.right.clone());
             if left_depth > right_depth {
                 return left_depth + 1;
             } else {
@@ -117,10 +98,12 @@ fn main() {
     }
 
     println!("{:?}", root);
-
+    println!("Preorder Traversal:");
     preorder_traversal(&Some(Rc::new(RefCell::new(root.clone()))));
-    //inorder_traversal(&Some(Rc::new(RefCell::new(root))));
-    //postorder_traversal(&Some(Rc::new(RefCell::new(root))));
+    println!("Inorder Traversal:");
+    inorder_traversal(&Some(Rc::new(RefCell::new(root.clone()))));
+    println!("Postorder Traversal:");
+    postorder_traversal(&Some(Rc::new(RefCell::new(root.clone()))));
     println!(
         "Max depth is: {:?}",
         calculate_max_depth(&Some(Rc::new(RefCell::new(root))))
