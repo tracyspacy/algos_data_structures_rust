@@ -18,7 +18,6 @@ example:
     Output: 2
 */
 
-use std::borrow::Borrow;
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -47,15 +46,9 @@ impl Solution {
         match root {
             None => return 0,
             Some(node) => {
-                let borrowed_node: &RefCell<TreeNode> = node.borrow();
-                let mut left_depth = 0;
-                let mut right_depth = 0;
-                if let Some(left) = borrowed_node.borrow().left.as_ref() {
-                    left_depth = Solution::max_depth(Some(left.clone()));
-                }
-                if let Some(right) = borrowed_node.borrow().right.as_ref() {
-                    right_depth = Solution::max_depth(Some(right.clone()));
-                }
+                let borrowed_node = node.borrow();
+                let left_depth = Solution::max_depth(borrowed_node.left.clone());
+                let right_depth = Solution::max_depth(borrowed_node.right.clone());
                 if left_depth > right_depth {
                     return left_depth + 1;
                 } else {
