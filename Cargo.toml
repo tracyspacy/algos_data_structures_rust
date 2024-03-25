@@ -56,6 +56,10 @@ path = "src/trees/binary_trees/max_depth.rs"
 name = "same_tree"
 path = "src/trees/binary_trees/same_tree.rs"
 
+[[example]]
+name = "invert_binary_tree"
+path = "src/trees/binary_trees/invert_binary_tree.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
