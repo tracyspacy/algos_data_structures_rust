@@ -64,6 +64,10 @@ path = "src/trees/binary_trees/invert_binary_tree.rs"
 name = "symmetric_tree"
 path = "src/trees/binary_trees/symmetric_tree.rs"
 
+[[example]]
+name = "circular_buffer"
+path = "src/queue/circular_buffer.rs"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
