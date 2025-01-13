@@ -6,7 +6,8 @@ topics covered so far:
   - [sliding window](https://github.com/tracyspacy/algos_data_structures_rust/tree/master/src/arrays/sliding_window)
   - [two pointers](https://github.com/tracyspacy/algos_data_structures_rust/tree/master/src/arrays/two_pointers)
 - [linked lists](https://github.com/tracyspacy/algos_data_structures_rust/tree/master/src/linked_list)
-
+- [queue]
+  - [circular buffer](https://github.com/tracyspacy/algos_data_structures_rust/blob/master/src/queue/circular_buffer.rs) 
 - [stack](https://github.com/tracyspacy/algos_data_structures_rust/tree/master/src/stack)
 
 - [trees](https://github.com/tracyspacy/algos_data_structures_rust/tree/master/src/trees)
